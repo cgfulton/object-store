@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 11
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -16,7 +16,14 @@ jobs:
           java-package: 'jdk'
           architecture: 'x64'
           check-latest: 'true'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package        
+      - name: Maven Validate
+        run: mvn validate      
+      - name: Maven Compile
+        run: mvn compile           
+      - name: Maven Test
+        run: mvn test
+      - name: Maven Package
+        run: mvn package 
+      - name: Maven Verify
+        run: mvn verify
         
-
